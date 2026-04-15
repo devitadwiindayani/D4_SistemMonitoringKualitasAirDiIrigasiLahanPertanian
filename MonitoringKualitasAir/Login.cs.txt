@@ -1,0 +1,90 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MonitoringKualitasAir
+{
+    public partial class Form1 : Form
+    {
+        // Koneksi ke database
+        private readonly SqlConnection conn;
+        private readonly string connectionString =
+            "Data Source=DESKTOP-R4G2LB6\\ACHELL;Initial Catalog=DBMonitoringKualitasAir;Integrated Security=True";
+        public Form1()
+        {
+            InitializeComponent();
+            conn = new SqlConnection(connectionString);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtUsername_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            // Validasi input kosong
+            if (txtUsername.Text == "" || txtPassword.Text == "")
+            {
+                MessageBox.Show("Username dan Password harus diisi!");
+                return;
+            }
+
+            try
+            {
+                conn.Open();
+
+                // Query cek login
+                SqlCommand cmd = new SqlCommand(
+                    "SELECT role FROM Users WHERE username=@user AND password=@pass", conn);
+
+                cmd.Parameters.AddWithValue("@user", txtUsername.Text);
+                cmd.Parameters.AddWithValue("@pass", txtPassword.Text);
+
+                object result = cmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    MessageBox.Show("Login berhasil sebagai " + result.ToString());
+
+                    // Pindah ke Form Menu
+                    Form2 menu = new Form2();
+                    menu.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Username atau Password salah!");
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+    }
+}
