@@ -23,6 +23,14 @@ namespace MonitoringKualitasAir
             conn = new SqlConnection(connectionString);
         }
 
+        private string role;
+
+        public Dashboard(string roleUser)
+        {
+            InitializeComponent();
+            role = roleUser;
+        }
+
         private void Dashboard_Load(object sender, EventArgs e)
         {
 
@@ -44,7 +52,7 @@ namespace MonitoringKualitasAir
 
         private void btnIrigasi_Click(object sender, EventArgs e)
         {
-            Irigasi f = new Irigasi();
+            Irigasi f = new Irigasi(role);
             f.Show();
             this.Hide();
         }

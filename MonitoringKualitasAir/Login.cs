@@ -53,9 +53,11 @@ namespace MonitoringKualitasAir
 
                 if (result != null)
                 {
+                    string role = result.ToString();
+
                     MessageBox.Show("Login berhasil sebagai " + result.ToString());
 
-                    Dashboard f = new Dashboard();
+                    Dashboard f = new Dashboard(role);
                     f.Show();
                     this.Hide();
                 }

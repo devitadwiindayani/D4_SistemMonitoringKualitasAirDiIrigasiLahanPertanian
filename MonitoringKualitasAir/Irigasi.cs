@@ -128,6 +128,8 @@ namespace MonitoringKualitasAir
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dataGridView1.CellClick += dataGridView1_CellClick;
+
+            ApplyRole(); // 🔥 INI TAMBAHAN PENTING
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -239,6 +241,26 @@ namespace MonitoringKualitasAir
             Dashboard f = new Dashboard();
             f.Show();
             this.Hide();
+        }
+
+        private string role;
+
+        public Irigasi(string roleUser)
+        {
+            InitializeComponent();
+            conn = new SqlConnection(connectionString);
+            role = roleUser;
+        }
+
+        private void ApplyRole()
+        {
+            if (role == "Petugas")
+            {
+                // READ ONLY MODE
+                btnInsert.Enabled = false; // INSERT
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false; // DELETE
+            }
         }
     }
 }
