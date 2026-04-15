@@ -116,7 +116,7 @@
             this.btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnConnect.Location = new System.Drawing.Point(367, 20);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(130, 23);
+            this.btnConnect.Size = new System.Drawing.Size(130, 50);
             this.btnConnect.TabIndex = 8;
             this.btnConnect.Text = "Connect Database";
             this.btnConnect.UseVisualStyleBackColor = false;
@@ -127,7 +127,7 @@
             this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnLoad.Location = new System.Drawing.Point(543, 20);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(131, 23);
+            this.btnLoad.Size = new System.Drawing.Size(131, 50);
             this.btnLoad.TabIndex = 9;
             this.btnLoad.Text = "Menampilkan Data";
             this.btnLoad.UseVisualStyleBackColor = false;
@@ -136,9 +136,9 @@
             // btnInsert
             // 
             this.btnInsert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnInsert.Location = new System.Drawing.Point(456, 59);
+            this.btnInsert.Location = new System.Drawing.Point(543, 80);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(131, 23);
+            this.btnInsert.Size = new System.Drawing.Size(131, 49);
             this.btnInsert.TabIndex = 10;
             this.btnInsert.Text = "Menambah Data";
             this.btnInsert.UseVisualStyleBackColor = false;
@@ -147,9 +147,9 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.btnUpdate.Location = new System.Drawing.Point(456, 98);
+            this.btnUpdate.Location = new System.Drawing.Point(366, 76);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(131, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(131, 52);
             this.btnUpdate.TabIndex = 11;
             this.btnUpdate.Text = "Mengubah Data";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -160,7 +160,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnDelete.Location = new System.Drawing.Point(456, 135);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(131, 23);
+            this.btnDelete.Size = new System.Drawing.Size(131, 47);
             this.btnDelete.TabIndex = 12;
             this.btnDelete.Text = "Menghapus Data";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -180,9 +180,9 @@
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(643, 415);
+            this.btnKembali.Location = new System.Drawing.Point(643, 394);
             this.btnKembali.Name = "btnKembali";
-            this.btnKembali.Size = new System.Drawing.Size(131, 23);
+            this.btnKembali.Size = new System.Drawing.Size(131, 44);
             this.btnKembali.TabIndex = 14;
             this.btnKembali.Text = "Kembali";
             this.btnKembali.UseVisualStyleBackColor = true;

@@ -251,17 +251,15 @@ namespace MonitoringKualitasAir
             conn = new SqlConnection(connectionString);
             role = roleUser;
         }
-
+        // Referensi gpt
         private void ApplyRole()
         {
             if (role == "Petugas")
-            {
                 // READ ONLY MODE
                 btnInsert.Enabled = false; // INSERT
                 btnUpdate.Enabled = false;
                 btnDelete.Enabled = false; // DELETE
-            }
+            
         }
     }
 }
-

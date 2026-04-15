@@ -251,6 +251,7 @@ namespace MonitoringKualitasAir
             this.Hide();
         }
 
+        // referensi gpt
         private void ApplyRole()
         {
             if (role == "Petugas")
