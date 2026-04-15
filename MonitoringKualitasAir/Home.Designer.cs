@@ -36,27 +36,30 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnLogin.Location = new System.Drawing.Point(84, 211);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(214, 78);
             this.btnLogin.TabIndex = 0;
             this.btnLogin.Text = "LOGIN";
-            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // btnRegist
             // 
+            this.btnRegist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnRegist.Location = new System.Drawing.Point(460, 211);
             this.btnRegist.Name = "btnRegist";
             this.btnRegist.Size = new System.Drawing.Size(214, 78);
             this.btnRegist.TabIndex = 1;
             this.btnRegist.Text = "Registrasi";
-            this.btnRegist.UseVisualStyleBackColor = true;
+            this.btnRegist.UseVisualStyleBackColor = false;
             this.btnRegist.Click += new System.EventHandler(this.btnRegist_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(81, 192);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(134, 16);
@@ -67,6 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(457, 192);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(129, 16);
@@ -77,6 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
