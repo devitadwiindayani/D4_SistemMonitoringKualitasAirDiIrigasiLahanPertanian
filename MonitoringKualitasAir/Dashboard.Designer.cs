@@ -39,71 +39,80 @@
             // 
             // btnPetugas
             // 
-            this.btnPetugas.Location = new System.Drawing.Point(303, 95);
+            this.btnPetugas.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnPetugas.Location = new System.Drawing.Point(119, 152);
             this.btnPetugas.Name = "btnPetugas";
             this.btnPetugas.Size = new System.Drawing.Size(148, 51);
             this.btnPetugas.TabIndex = 0;
             this.btnPetugas.Text = "Data Petugas";
-            this.btnPetugas.UseVisualStyleBackColor = true;
+            this.btnPetugas.UseVisualStyleBackColor = false;
             this.btnPetugas.Click += new System.EventHandler(this.btnPetugas_Click);
             // 
             // btnLahan
             // 
+            this.btnLahan.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btnLahan.Location = new System.Drawing.Point(303, 152);
             this.btnLahan.Name = "btnLahan";
             this.btnLahan.Size = new System.Drawing.Size(148, 51);
             this.btnLahan.TabIndex = 1;
             this.btnLahan.Text = "Data Lahan";
-            this.btnLahan.UseVisualStyleBackColor = true;
+            this.btnLahan.UseVisualStyleBackColor = false;
             this.btnLahan.Click += new System.EventHandler(this.btnLahan_Click);
             // 
             // btnIrigasi
             // 
-            this.btnIrigasi.Location = new System.Drawing.Point(303, 209);
+            this.btnIrigasi.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnIrigasi.Location = new System.Drawing.Point(492, 152);
             this.btnIrigasi.Name = "btnIrigasi";
             this.btnIrigasi.Size = new System.Drawing.Size(148, 51);
             this.btnIrigasi.TabIndex = 2;
             this.btnIrigasi.Text = "Data Irigasi";
-            this.btnIrigasi.UseVisualStyleBackColor = true;
+            this.btnIrigasi.UseVisualStyleBackColor = false;
             this.btnIrigasi.Click += new System.EventHandler(this.btnIrigasi_Click);
             // 
             // btnMonitoring
             // 
-            this.btnMonitoring.Location = new System.Drawing.Point(303, 266);
+            this.btnMonitoring.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnMonitoring.Location = new System.Drawing.Point(200, 232);
             this.btnMonitoring.Name = "btnMonitoring";
             this.btnMonitoring.Size = new System.Drawing.Size(148, 51);
             this.btnMonitoring.TabIndex = 3;
             this.btnMonitoring.Text = "Monitoring Kualitas Air";
-            this.btnMonitoring.UseVisualStyleBackColor = true;
+            this.btnMonitoring.UseVisualStyleBackColor = false;
             this.btnMonitoring.Click += new System.EventHandler(this.btnMonitoring_Click);
             // 
             // btnLaporan
             // 
-            this.btnLaporan.Location = new System.Drawing.Point(303, 323);
+            this.btnLaporan.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnLaporan.Location = new System.Drawing.Point(385, 232);
             this.btnLaporan.Name = "btnLaporan";
             this.btnLaporan.Size = new System.Drawing.Size(148, 51);
             this.btnLaporan.TabIndex = 4;
             this.btnLaporan.Text = "Laporan";
-            this.btnLaporan.UseVisualStyleBackColor = true;
+            this.btnLaporan.UseVisualStyleBackColor = false;
             this.btnLaporan.Click += new System.EventHandler(this.btnLaporan_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(349, 46);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.label1.Location = new System.Drawing.Point(308, 45);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 16);
+            this.label1.Size = new System.Drawing.Size(134, 25);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Menu";
+            this.label1.Text = "Menu Utama";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnLogout
             // 
+            this.btnLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnLogout.Location = new System.Drawing.Point(597, 368);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(144, 54);
             this.btnLogout.TabIndex = 6;
             this.btnLogout.Text = "Logout";
-            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.UseVisualStyleBackColor = false;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // Dashboard
