@@ -28,8 +28,6 @@
 - menghapus data Petugas "Windah"
 <img width="781" height="568" alt="image" src="https://github.com/user-attachments/assets/8f82c285-f1d9-4357-98a6-75eed5046ca5" />
 
-<img width="774" height="520" alt="image" src="https://github.com/user-attachments/assets/3ab3656a-36fb-4289-b8dc-902b759435c5" />
-
 - connect Database Data Lahan
 <img width="759" height="514" alt="image" src="https://github.com/user-attachments/assets/2f25e727-d660-4411-ab67-ffba22948bd4" />
 
