@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -10,10 +11,19 @@ namespace MonitoringKualitasAir
         private readonly string connectionString =
         "Data Source=LAPTOP-GO2648H1\\DEVITADWI; Initial Catalog=DBMonitoringKualitasAir; Integrated Security=True";
 
+        private string role;
+
         public Petugas()
         {
             InitializeComponent();
             conn = new SqlConnection(connectionString);
+        }
+
+        public Petugas(string roleUser)
+        {
+            InitializeComponent();
+            conn = new SqlConnection(connectionString);
+            role = roleUser;
         }
 
         private void ConnectDatabase()
@@ -46,6 +56,7 @@ namespace MonitoringKualitasAir
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dataGridView1.CellClick += dataGridView1_CellClick;
+            ApplyRole();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -232,6 +243,21 @@ namespace MonitoringKualitasAir
             Dashboard f = new Dashboard();
             f.Show();
             this.Hide();
+        }
+
+        private void ApplyRole()
+        {
+            if (role == "Petugas")
+            {
+                // MATIKAN CRUD
+                btnInsert.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+
+                // OPTIONAL: kalau ada textbox input
+                txtNamaPetugas.Enabled = false;
+                txtNoHP.Enabled = false;
+            }
         }
     }
 }

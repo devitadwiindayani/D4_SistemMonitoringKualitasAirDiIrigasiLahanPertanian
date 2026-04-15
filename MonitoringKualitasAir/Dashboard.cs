@@ -38,7 +38,7 @@ namespace MonitoringKualitasAir
 
         private void btnPetugas_Click(object sender, EventArgs e)
         {
-            Petugas f = new Petugas();
+            Petugas f = new Petugas(role);
             f.Show();
             this.Hide();
         }
