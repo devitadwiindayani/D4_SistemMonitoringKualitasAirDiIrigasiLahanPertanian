@@ -49,7 +49,7 @@
 <img width="751" height="503" alt="image" src="https://github.com/user-attachments/assets/c37fb881-e4fb-4c60-b9e3-6a345d46bca8" />
 
 - Menambah Data Irigasi
-  <img width="761" height="526" alt="image" src="https://github.com/user-attachments/assets/209222d4-6bba-40e2-99c4-ee2bf60f54b9" />
+<img width="761" height="526" alt="image" src="https://github.com/user-attachments/assets/209222d4-6bba-40e2-99c4-ee2bf60f54b9" />
   
 - Mengubah Data Irigasi
 <img width="748" height="492" alt="image" src="https://github.com/user-attachments/assets/f9e4f120-671a-484d-91ce-992450c06fc8" />
