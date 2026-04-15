@@ -101,11 +101,11 @@
 
 - Menambah Data Monitoring Kualitas air Petugas
 <img width="723" height="509" alt="image" src="https://github.com/user-attachments/assets/6ed17a66-2424-46b1-a025-46a8cc8115d7" />
+
 - Mengubah Data Monitoring Kualitas air Petugas
-
 <img width="762" height="561" alt="image" src="https://github.com/user-attachments/assets/b0540579-6234-4056-87f6-d99deb7bd993" />
-- Hapus Data Monitoring Kualitas air Petugas
 
+- Hapus Data Monitoring Kualitas air Petugas
 <img width="856" height="569" alt="image" src="https://github.com/user-attachments/assets/0ea69794-d754-4d0e-974e-d91fac3fd739" />
 
 - Menampilkan Laporan Petugas
