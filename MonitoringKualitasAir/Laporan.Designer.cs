@@ -84,7 +84,7 @@
             this.btnCetak.Name = "btnCetak";
             this.btnCetak.Size = new System.Drawing.Size(160, 52);
             this.btnCetak.TabIndex = 3;
-            this.btnCetak.Text = "Hasil Laporan";
+            this.btnCetak.Text = "Cetak Laporan";
             this.btnCetak.UseVisualStyleBackColor = true;
             this.btnCetak.Click += new System.EventHandler(this.btnCetak_Click);
             // 
