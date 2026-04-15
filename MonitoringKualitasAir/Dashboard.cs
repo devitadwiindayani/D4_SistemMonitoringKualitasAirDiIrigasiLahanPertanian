@@ -70,5 +70,12 @@ namespace MonitoringKualitasAir
             f.Show();
             this.Hide();
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Home f = new Home();
+            f.Show();
+            this.Hide();
+        }
     }
 }

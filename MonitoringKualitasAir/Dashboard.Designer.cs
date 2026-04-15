@@ -34,6 +34,7 @@
             this.btnMonitoring = new System.Windows.Forms.Button();
             this.btnLaporan = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPetugas
@@ -95,11 +96,22 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Menu";
             // 
+            // btnLogout
+            // 
+            this.btnLogout.Location = new System.Drawing.Point(597, 368);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(144, 54);
+            this.btnLogout.TabIndex = 6;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLaporan);
             this.Controls.Add(this.btnMonitoring);
@@ -122,5 +134,6 @@
         private System.Windows.Forms.Button btnMonitoring;
         private System.Windows.Forms.Button btnLaporan;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnLogout;
     }
 }
