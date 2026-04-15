@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.btnTampil = new System.Windows.Forms.Button();
@@ -42,6 +42,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(29, 23);
             this.dataGridView1.Name = "dataGridView1";
@@ -53,16 +54,16 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(523, 222);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(189, 205);
             this.chart1.TabIndex = 1;
             this.chart1.Text = "chart1";
@@ -70,32 +71,35 @@
             // 
             // btnTampil
             // 
+            this.btnTampil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnTampil.Location = new System.Drawing.Point(100, 257);
             this.btnTampil.Name = "btnTampil";
             this.btnTampil.Size = new System.Drawing.Size(160, 52);
             this.btnTampil.TabIndex = 2;
             this.btnTampil.Text = "Tampilkan Data";
-            this.btnTampil.UseVisualStyleBackColor = true;
+            this.btnTampil.UseVisualStyleBackColor = false;
             this.btnTampil.Click += new System.EventHandler(this.btnTampil_Click);
             // 
             // btnCetak
             // 
+            this.btnCetak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnCetak.Location = new System.Drawing.Point(308, 257);
             this.btnCetak.Name = "btnCetak";
             this.btnCetak.Size = new System.Drawing.Size(160, 52);
             this.btnCetak.TabIndex = 3;
             this.btnCetak.Text = "Cetak Laporan";
-            this.btnCetak.UseVisualStyleBackColor = true;
+            this.btnCetak.UseVisualStyleBackColor = false;
             this.btnCetak.Click += new System.EventHandler(this.btnCetak_Click);
             // 
             // btnKembali
             // 
+            this.btnKembali.BackColor = System.Drawing.Color.White;
             this.btnKembali.Location = new System.Drawing.Point(199, 354);
             this.btnKembali.Name = "btnKembali";
             this.btnKembali.Size = new System.Drawing.Size(160, 52);
             this.btnKembali.TabIndex = 4;
             this.btnKembali.Text = "Kembali";
-            this.btnKembali.UseVisualStyleBackColor = true;
+            this.btnKembali.UseVisualStyleBackColor = false;
             this.btnKembali.Click += new System.EventHandler(this.button1_Click);
             // 
             // Laporan
