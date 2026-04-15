@@ -21,9 +21,10 @@
 
 - Menampilkan Data Petugas
 <img width="772" height="517" alt="image" src="https://github.com/user-attachments/assets/c3c35332-6154-479f-9de4-3c78281055a1" />
-- Mengubah Data Petugas "Windah Bersaudara"
 
+- Mengubah Data Petugas "Windah Bersaudara"
 <img width="774" height="510" alt="image" src="https://github.com/user-attachments/assets/5d4c386f-7293-44bb-8da0-5b113ddf89a0" />
+
 - menghapus data Petugas "Windah"
 <img width="781" height="568" alt="image" src="https://github.com/user-attachments/assets/8f82c285-f1d9-4357-98a6-75eed5046ca5" />
 
