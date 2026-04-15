@@ -119,6 +119,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(31, 305);
             this.dataGridView1.Name = "dataGridView1";
@@ -171,52 +172,57 @@
             // 
             // btnKoneksi
             // 
-            this.btnKoneksi.Location = new System.Drawing.Point(432, 31);
+            this.btnKoneksi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnKoneksi.Location = new System.Drawing.Point(432, 30);
             this.btnKoneksi.Name = "btnKoneksi";
-            this.btnKoneksi.Size = new System.Drawing.Size(140, 23);
+            this.btnKoneksi.Size = new System.Drawing.Size(140, 42);
             this.btnKoneksi.TabIndex = 15;
             this.btnKoneksi.Text = "Koneksi Data";
-            this.btnKoneksi.UseVisualStyleBackColor = true;
+            this.btnKoneksi.UseVisualStyleBackColor = false;
             this.btnKoneksi.Click += new System.EventHandler(this.btnKoneksi_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(432, 178);
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDelete.Location = new System.Drawing.Point(432, 214);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(140, 23);
+            this.btnDelete.Size = new System.Drawing.Size(140, 38);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "HapusData";
-            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(432, 136);
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnUpdate.Location = new System.Drawing.Point(432, 169);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(140, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(140, 39);
             this.btnUpdate.TabIndex = 17;
             this.btnUpdate.Text = "Edit Data";
-            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnLoad
             // 
-            this.btnLoad.Location = new System.Drawing.Point(432, 101);
+            this.btnLoad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnLoad.Location = new System.Drawing.Point(432, 129);
             this.btnLoad.Name = "btnLoad";
-            this.btnLoad.Size = new System.Drawing.Size(140, 23);
+            this.btnLoad.Size = new System.Drawing.Size(140, 34);
             this.btnLoad.TabIndex = 18;
             this.btnLoad.Text = "Tampilkan Data";
-            this.btnLoad.UseVisualStyleBackColor = true;
+            this.btnLoad.UseVisualStyleBackColor = false;
             this.btnLoad.Click += new System.EventHandler(this.btnLoad_Click);
             // 
             // btnSimpan
             // 
-            this.btnSimpan.Location = new System.Drawing.Point(432, 69);
+            this.btnSimpan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnSimpan.Location = new System.Drawing.Point(432, 78);
             this.btnSimpan.Name = "btnSimpan";
-            this.btnSimpan.Size = new System.Drawing.Size(140, 23);
+            this.btnSimpan.Size = new System.Drawing.Size(140, 45);
             this.btnSimpan.TabIndex = 19;
             this.btnSimpan.Text = "Menambah Data";
-            this.btnSimpan.UseVisualStyleBackColor = true;
+            this.btnSimpan.UseVisualStyleBackColor = false;
             this.btnSimpan.Click += new System.EventHandler(this.btnSimpan_Click);
             // 
             // label8
@@ -255,9 +261,9 @@
             // 
             // btnKembali
             // 
-            this.btnKembali.Location = new System.Drawing.Point(1133, 259);
+            this.btnKembali.Location = new System.Drawing.Point(1133, 236);
             this.btnKembali.Name = "btnKembali";
-            this.btnKembali.Size = new System.Drawing.Size(140, 23);
+            this.btnKembali.Size = new System.Drawing.Size(140, 46);
             this.btnKembali.TabIndex = 24;
             this.btnKembali.Text = "Kembali";
             this.btnKembali.UseVisualStyleBackColor = true;
