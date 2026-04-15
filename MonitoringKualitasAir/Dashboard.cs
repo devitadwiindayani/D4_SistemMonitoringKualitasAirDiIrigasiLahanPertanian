@@ -45,7 +45,7 @@ namespace MonitoringKualitasAir
 
         private void btnLahan_Click(object sender, EventArgs e)
         {
-            Lahan f = new Lahan();
+            Lahan f = new Lahan(role);
             f.Show();
             this.Hide();
         }

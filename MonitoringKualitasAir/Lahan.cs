@@ -10,10 +10,19 @@ namespace MonitoringKualitasAir
         private readonly string connectionString =
         "Data Source=LAPTOP-GO2648H1\\DEVITADWI; Initial Catalog=DBMonitoringKualitasAir; Integrated Security=True";
 
+        private string role;
+
         public Lahan()
         {
             InitializeComponent();
             conn = new SqlConnection(connectionString);
+        }
+
+        public Lahan(string roleUser)
+        {
+            InitializeComponent();
+            conn = new SqlConnection(connectionString);
+            role = roleUser;
         }
 
         private void ConnectDatabase()
@@ -46,6 +55,7 @@ namespace MonitoringKualitasAir
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dataGridView1.CellClick += dataGridView1_CellClick;
+            ApplyRole();
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
@@ -239,6 +249,22 @@ namespace MonitoringKualitasAir
             Dashboard f = new Dashboard();
             f.Show();
             this.Hide();
+        }
+
+        private void ApplyRole()
+        {
+            if (role == "Petugas")
+            {
+                // ❌ MATIKAN CRUD
+                btnInsert.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+
+                // ❌ matikan input (kalau ada textbox)
+                txtNamaLahan.Enabled = false;
+                txtLokasi.Enabled = false;
+                txtLuasLahan.Enabled = false;
+            }
         }
     }
 }
