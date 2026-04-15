@@ -43,8 +43,6 @@
 - Menghapus Data lahan D
 <img width="768" height="514" alt="image" src="https://github.com/user-attachments/assets/99ade332-ecc0-4f66-a379-eea2d7aaf06e" />
 
-<img width="771" height="507" alt="image" src="https://github.com/user-attachments/assets/1f4975bb-27f4-4045-b16c-0489b696702b" />
-
 - connect Database Irigasi
 <img width="751" height="503" alt="image" src="https://github.com/user-attachments/assets/c37fb881-e4fb-4c60-b9e3-6a345d46bca8" />
 
