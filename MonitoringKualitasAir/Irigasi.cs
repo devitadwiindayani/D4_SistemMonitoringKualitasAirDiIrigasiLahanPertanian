@@ -236,6 +236,9 @@ namespace MonitoringKualitasAir
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
+            Dashboard f = new Dashboard();
+            f.Show();
+            this.Hide();
         }
     }
 }
