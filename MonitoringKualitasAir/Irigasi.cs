@@ -159,7 +159,7 @@ namespace MonitoringKualitasAir
 
             ApplyRole();
 
-            //LoadData();
+            LoadData();
         }
 
         private void LoadData()
