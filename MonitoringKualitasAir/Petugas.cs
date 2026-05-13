@@ -49,6 +49,8 @@ namespace MonitoringKualitasAir
 
         private void Petugas_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dBMonitoringKualitasAirDataSet.Petugas' table. You can move, or remove it, as needed.
+            this.petugasTableAdapter.Fill(this.dBMonitoringKualitasAirDataSet.Petugas);
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
