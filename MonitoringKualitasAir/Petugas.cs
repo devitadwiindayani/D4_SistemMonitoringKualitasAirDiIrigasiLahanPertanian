@@ -13,6 +13,10 @@ namespace MonitoringKualitasAir
 
         private string role;
 
+        // Storage Procedu
+        private BindingSource bindingSource = new BindingSource();
+        private DataTable dtPetugas = new DataTable();
+
         public Petugas()
         {
             InitializeComponent();
@@ -47,6 +51,7 @@ namespace MonitoringKualitasAir
             ConnectDatabase();
         }
 
+        //FORM LOAD
         private void Petugas_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dBMonitoringKualitasAirDataSet.Petugas' table. You can move, or remove it, as needed.
@@ -57,41 +62,43 @@ namespace MonitoringKualitasAir
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            dataGridView1.CellClick += dataGridView1_CellClick;
-            ApplyRole();
-        }
+            //dataGridView1.CellClick += dataGridView1_CellClick;
 
-        private void btnLoad_Click(object sender, EventArgs e)
+            ApplyRole();
+
+        }
+        //dataGridView1.CellClick += dataGridView1_CellClick;
+        //ApplyRole();
+        //tambahan yg bawah ini
+        // ====================================================
+        // LOAD DATA (SP SELECT)
+        // ====================================================
+        private void LoadData()
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_GetPetugas", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            dtPetugas = new DataTable();
+
+                            da.Fill(dtPetugas);
+
+                            bindingSource.DataSource = dtPetugas;
+                            dataGridView1.DataSource = bindingSource;
+
+                            BindControls();
+                        }
+                    }
                 }
 
-                dataGridView1.Rows.Clear();
-                dataGridView1.Columns.Clear();
-
-                dataGridView1.Columns.Add("ID_Petugas", "ID Petugas");
-                dataGridView1.Columns.Add("Nama_Petugas", "Nama Petugas");
-                dataGridView1.Columns.Add("No_HP", "No HP");
-
-                string query = "SELECT * FROM Petugas";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    dataGridView1.Rows.Add(
-                        reader["ID_Petugas"].ToString(),
-                        reader["Nama_Petugas"].ToString(),
-                        reader["No_HP"].ToString()
-                    );
-                }
-
-                reader.Close();
+                // COUNT OUTPUT
+                HitungTotal();
             }
             catch (Exception ex)
             {
@@ -99,37 +106,59 @@ namespace MonitoringKualitasAir
             }
         }
 
+        // ====================================================
+        // BIND CONTROLS
+        // ====================================================
+        private void BindControls()
+        {
+            txtIDPetugas.DataBindings.Clear();
+            txtNamaPetugas.DataBindings.Clear();
+            txtNoHP.DataBindings.Clear();
+
+            txtIDPetugas.DataBindings.Add("Text", bindingSource, "ID_Petugas");
+            txtNamaPetugas.DataBindings.Add("Text", bindingSource, "Nama_Petugas");
+            txtNoHP.DataBindings.Add("Text", bindingSource, "No_HP");
+        }
+
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
-                }
+                    using (SqlCommand cmd = new SqlCommand("sp_InsertPetugas", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                string query = @"INSERT INTO Petugas
-                (Nama_Petugas, No_HP)
-                VALUES
-                (@Nama, @HP)";
+                        cmd.Parameters.AddWithValue("@Nama_Petugas", txtNamaPetugas.Text);
+                        cmd.Parameters.AddWithValue("@No_HP", txtNoHP.Text);
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                        conn.Open();
 
-                //cmd.Parameters.AddWithValue("@ID", txtIDPetugas.Text);
-                cmd.Parameters.AddWithValue("@Nama", txtNamaPetugas.Text);
-                cmd.Parameters.AddWithValue("@HP", txtNoHP.Text);
+                        int result = cmd.ExecuteNonQuery();
 
-                int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Data berhasil ditambahkan");
+                            ClearForm();
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data gagal ditambahkan");
+                        }
 
-                if (result > 0)
-                {
-                    MessageBox.Show("Data berhasil ditambahkan");
-                    ClearForm();
-                    btnLoad.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("Data gagal ditambahkan");
+                        if (conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -142,33 +171,36 @@ namespace MonitoringKualitasAir
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
-                }
+                    using (SqlCommand cmd = new SqlCommand("sp_UpdatePetugas", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                string query = @"UPDATE Petugas
-                SET Nama_Petugas = @Nama,
-                    No_HP = @HP
-                WHERE ID_Petugas = @ID";
+                        cmd.Parameters.AddWithValue("@ID_Petugas", txtIDPetugas.Text);
+                        cmd.Parameters.AddWithValue("@Nama_Petugas", txtNamaPetugas.Text);
+                        cmd.Parameters.AddWithValue("@No_HP", txtNoHP.Text);
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                        conn.Open();
 
-                cmd.Parameters.AddWithValue("@ID", txtIDPetugas.Text);
-                cmd.Parameters.AddWithValue("@Nama", txtNamaPetugas.Text);
-                cmd.Parameters.AddWithValue("@HP", txtNoHP.Text);
+                        int result = cmd.ExecuteNonQuery();
 
-                int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Data berhasil diupdate");
+                            ClearForm();
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data tidak ditemukan");
+                        }
 
-                if (result > 0)
-                {
-                    MessageBox.Show("Data berhasil diupdate");
-                    ClearForm();
-                    btnLoad.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("Data tidak ditemukan");
+                        if (conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -181,11 +213,6 @@ namespace MonitoringKualitasAir
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-
                 DialogResult resultConfirm = MessageBox.Show(
                     "Yakin ingin menghapus data?",
                     "Konfirmasi",
@@ -194,22 +221,34 @@ namespace MonitoringKualitasAir
 
                 if (resultConfirm == DialogResult.Yes)
                 {
-                    string query = "DELETE FROM Petugas WHERE ID_Petugas = @ID";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ID", txtIDPetugas.Text);
-
-                    int result = cmd.ExecuteNonQuery();
-
-                    if (result > 0)
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
-                        MessageBox.Show("Data berhasil dihapus");
-                        ClearForm();
-                        btnLoad.PerformClick();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Data tidak ditemukan");
+                        using (SqlCommand cmd = new SqlCommand("sp_DeletePetugas", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@ID_Petugas", txtIDPetugas.Text);
+
+                            conn.Open();
+
+                            int result = cmd.ExecuteNonQuery();
+
+                            if (result > 0)
+                            {
+                                MessageBox.Show("Data berhasil dihapus");
+                                ClearForm();
+                                LoadData();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Data tidak ditemukan");
+                            }
+
+                            if (conn.State == ConnectionState.Open)
+                            {
+                                conn.Close();
+                            }
+                        }
                     }
                 }
             }
@@ -219,17 +258,6 @@ namespace MonitoringKualitasAir
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-                txtIDPetugas.Text = row.Cells["ID_Petugas"].Value.ToString();
-                txtNamaPetugas.Text = row.Cells["Nama_Petugas"].Value.ToString();
-                txtNoHP.Text = row.Cells["No_HP"].Value.ToString();
-            }
-        }
 
         private void ClearForm()
         {
@@ -264,6 +292,55 @@ namespace MonitoringKualitasAir
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                txtIDPetugas.Text = row.Cells[0].Value.ToString();
+                txtNamaPetugas.Text = row.Cells[1].Value.ToString();
+                txtNoHP.Text = row.Cells[2].Value.ToString();
+            }
+        }
+
+        //hitung tottal
+        private void HitungTotal()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_CountPetugas", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        SqlParameter outputParam =
+                            new SqlParameter("@Total", SqlDbType.Int);
+
+                        outputParam.Direction = ParameterDirection.Output;
+
+                        cmd.Parameters.Add(outputParam);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        lblTotal.Text =
+                            "Total Petugas : " + outputParam.Value.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal menghitung total: " + ex.Message);
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
         {
 
         }

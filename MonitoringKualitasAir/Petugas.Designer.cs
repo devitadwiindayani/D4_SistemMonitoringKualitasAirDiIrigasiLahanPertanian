@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Petugas));
             this.lblIDPetugas = new System.Windows.Forms.Label();
             this.txtIDPetugas = new System.Windows.Forms.TextBox();
+            this.petugasBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBMonitoringKualitasAirDataSet = new DBMonitoringKualitasAirDataSet();
             this.btnConnect = new System.Windows.Forms.Button();
             this.lnlNamaPetugas = new System.Windows.Forms.Label();
             this.lblNoHP = new System.Windows.Forms.Label();
@@ -43,30 +45,29 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idpetugasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namapetugasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nohpDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnKembali = new System.Windows.Forms.Button();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.dBMonitoringKualitasAirDataSet = new DBMonitoringKualitasAirDataSet(); 
-            this.petugasBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.petugasTableAdapter = new DBMonitoringKualitasAirDataSetTableAdapters.PetugasTableAdapter(); 
-            this.idpetugasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namapetugasDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nohpDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.petugasTableAdapter = new DBMonitoringKualitasAirDataSetTableAdapters.PetugasTableAdapter();
+            this.lblTotal = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.petugasBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.petugasBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIDPetugas
@@ -86,6 +87,16 @@
             this.txtIDPetugas.ReadOnly = true;
             this.txtIDPetugas.Size = new System.Drawing.Size(190, 22);
             this.txtIDPetugas.TabIndex = 1;
+            // 
+            // petugasBindingSource
+            // 
+            this.petugasBindingSource.DataMember = "Petugas";
+            this.petugasBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet;
+            // 
+            // dBMonitoringKualitasAirDataSet
+            // 
+            this.dBMonitoringKualitasAirDataSet.DataSetName = "DBMonitoringKualitasAirDataSet";
+            this.dBMonitoringKualitasAirDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnConnect
             // 
@@ -202,6 +213,31 @@
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // idpetugasDataGridViewTextBoxColumn
+            // 
+            this.idpetugasDataGridViewTextBoxColumn.DataPropertyName = "id_petugas";
+            this.idpetugasDataGridViewTextBoxColumn.HeaderText = "id_petugas";
+            this.idpetugasDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idpetugasDataGridViewTextBoxColumn.Name = "idpetugasDataGridViewTextBoxColumn";
+            this.idpetugasDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idpetugasDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // namapetugasDataGridViewTextBoxColumn
+            // 
+            this.namapetugasDataGridViewTextBoxColumn.DataPropertyName = "nama_petugas";
+            this.namapetugasDataGridViewTextBoxColumn.HeaderText = "nama_petugas";
+            this.namapetugasDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.namapetugasDataGridViewTextBoxColumn.Name = "namapetugasDataGridViewTextBoxColumn";
+            this.namapetugasDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nohpDataGridViewTextBoxColumn
+            // 
+            this.nohpDataGridViewTextBoxColumn.DataPropertyName = "no_hp";
+            this.nohpDataGridViewTextBoxColumn.HeaderText = "no_hp";
+            this.nohpDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nohpDataGridViewTextBoxColumn.Name = "nohpDataGridViewTextBoxColumn";
+            this.nohpDataGridViewTextBoxColumn.Width = 125;
+            // 
             // btnKembali
             // 
             this.btnKembali.BackColor = System.Drawing.Color.White;
@@ -242,6 +278,32 @@
             this.bindingNavigator1.Size = new System.Drawing.Size(800, 27);
             this.bindingNavigator1.TabIndex = 14;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            this.bindingNavigator1.RefreshItems += new System.EventHandler(this.bindingNavigator1_RefreshItems);
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -276,16 +338,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
@@ -308,71 +363,29 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // dBMonitoringKualitasAirDataSet
-            // 
-            this.dBMonitoringKualitasAirDataSet.DataSetName = "DBMonitoringKualitasAirDataSet";
-            this.dBMonitoringKualitasAirDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // petugasBindingSource
-            // 
-            this.petugasBindingSource.DataMember = "Petugas";
-            this.petugasBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet;
             // 
             // petugasTableAdapter
             // 
             this.petugasTableAdapter.ClearBeforeFill = true;
             // 
-            // idpetugasDataGridViewTextBoxColumn
+            // lblTotal
             // 
-            this.idpetugasDataGridViewTextBoxColumn.DataPropertyName = "id_petugas";
-            this.idpetugasDataGridViewTextBoxColumn.HeaderText = "id_petugas";
-            this.idpetugasDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idpetugasDataGridViewTextBoxColumn.Name = "idpetugasDataGridViewTextBoxColumn";
-            this.idpetugasDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idpetugasDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // namapetugasDataGridViewTextBoxColumn
-            // 
-            this.namapetugasDataGridViewTextBoxColumn.DataPropertyName = "nama_petugas";
-            this.namapetugasDataGridViewTextBoxColumn.HeaderText = "nama_petugas";
-            this.namapetugasDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.namapetugasDataGridViewTextBoxColumn.Name = "namapetugasDataGridViewTextBoxColumn";
-            this.namapetugasDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // nohpDataGridViewTextBoxColumn
-            // 
-            this.nohpDataGridViewTextBoxColumn.DataPropertyName = "no_hp";
-            this.nohpDataGridViewTextBoxColumn.HeaderText = "no_hp";
-            this.nohpDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nohpDataGridViewTextBoxColumn.Name = "nohpDataGridViewTextBoxColumn";
-            this.nohpDataGridViewTextBoxColumn.Width = 125;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(147, 177);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(85, 16);
+            this.lblTotal.TabIndex = 15;
+            this.lblTotal.Text = "total Petugas";
+            this.lblTotal.Click += new System.EventHandler(this.label1_Click);
             // 
             // Petugas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.btnKembali);
             this.Controls.Add(this.dataGridView1);
@@ -391,12 +404,12 @@
             this.Name = "Petugas";
             this.Text = "Petugas";
             this.Load += new System.EventHandler(this.Petugas_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.petugasBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.petugasBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,5 +449,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idpetugasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn namapetugasDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nohpDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
