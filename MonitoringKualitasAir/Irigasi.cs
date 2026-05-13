@@ -121,6 +121,8 @@ namespace MonitoringKualitasAir
 
         private void Irigasi_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dBMonitoringKualitasAirDataSet2.Irigasi' table. You can move, or remove it, as needed.
+            this.irigasiTableAdapter.Fill(this.dBMonitoringKualitasAirDataSet2.Irigasi);
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
@@ -256,9 +258,9 @@ namespace MonitoringKualitasAir
         {
             if (role == "Petugas")
                 // READ ONLY MODE
-                btnInsert.Enabled = false; // INSERT
-                btnUpdate.Enabled = false;
-                btnDelete.Enabled = false; // DELETE
+                btnInsert.Enabled = true; // INSERT
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true; // DELETE
             
         }
     }
