@@ -73,7 +73,7 @@ namespace MonitoringKualitasAir
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Home f = new Home();
+            Login f = new Login();
             f.Show();
             this.Hide();
         }
