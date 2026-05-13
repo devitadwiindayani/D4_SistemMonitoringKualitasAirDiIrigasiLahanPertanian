@@ -111,3 +111,7 @@
 
 - Cetak Laporan Petugas
 <img width="785" height="504" alt="image" src="https://github.com/user-attachments/assets/9fd8b14e-fb5a-49e0-b996-b9f9816ace88" />
+
+-- UCP 2 --
+SKENARIO SQL INJECTION 
+Pada project ini dibuat simulasi sederhana mengenai serangan SQL Injection sebagai bagian dari praktikum keamanan database, dimana fitur ini terdapat pada tombol btnInjectionMonitoring dan btnResetData untuk menunjukkan bagaimana query yang tidak aman dapat dimanfaatkan untuk memodifikasi data secara massal. Pada tombol btnInjectionMonitoring, sistem menjalankan query SQL secara langsung tanpa validasi dan tanpa parameter, sehingga rentan terhadap manipulasi input seperti ' OR '1'='1 yang dapat membuat kondisi query selalu bernilai benar dan berpotensi mengubah seluruh data pada tabel. Contohnya query seperti string query = "UPDATE Petugas SET nama_petugas ='HACKED'" akan mengubah semua data pada kolom nama_petugas di tabel Petugas menjadi “HACKED”, sehingga sebelum injection data seperti Budi, Andi, dan Sinta akan berubah seluruhnya menjadi HACKED. Hal ini menunjukkan bahwa penggunaan query tanpa pengamanan dapat membahayakan integritas data karena seluruh record dalam tabel dapat terpengaruh sekaligus.
