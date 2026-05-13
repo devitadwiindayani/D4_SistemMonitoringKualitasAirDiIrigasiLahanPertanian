@@ -48,6 +48,8 @@ namespace MonitoringKualitasAir
 
         private void Lahan_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dBMonitoringKualitasAirDataSet1.Lahan' table. You can move, or remove it, as needed.
+            this.lahanTableAdapter.Fill(this.dBMonitoringKualitasAirDataSet1.Lahan);
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
