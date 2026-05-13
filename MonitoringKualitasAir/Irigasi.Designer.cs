@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Irigasi));
             this.lblIrigasi = new System.Windows.Forms.Label();
             this.txtIDIrigasi = new System.Windows.Forms.TextBox();
+            this.irigasiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBMonitoringKualitasAirDataSet2 = new DBMonitoringKualitasAirDataSet2();
             this.lblNamaIrigasi = new System.Windows.Forms.Label();
             this.txtNamaIrigasi = new System.Windows.Forms.TextBox();
             this.lblJenisIrigasi = new System.Windows.Forms.Label();
@@ -44,31 +46,30 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnKembali = new System.Windows.Forms.Button();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.dBMonitoringKualitasAirDataSet2 = new DBMonitoringKualitasAirDataSet2();
-            this.irigasiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.irigasiTableAdapter = new DBMonitoringKualitasAirDataSet2TableAdapters.IrigasiTableAdapter();
             this.idirigasiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namairigasiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.jenisirigasiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lokasiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnKembali = new System.Windows.Forms.Button();
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.irigasiTableAdapter = new DBMonitoringKualitasAirDataSet2TableAdapters.IrigasiTableAdapter();
+            this.lblTotal = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.irigasiBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.irigasiBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIrigasi
@@ -88,6 +89,16 @@
             this.txtIDIrigasi.ReadOnly = true;
             this.txtIDIrigasi.Size = new System.Drawing.Size(100, 22);
             this.txtIDIrigasi.TabIndex = 1;
+            // 
+            // irigasiBindingSource
+            // 
+            this.irigasiBindingSource.DataMember = "Irigasi";
+            this.irigasiBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet2;
+            // 
+            // dBMonitoringKualitasAirDataSet2
+            // 
+            this.dBMonitoringKualitasAirDataSet2.DataSetName = "DBMonitoringKualitasAirDataSet2";
+            this.dBMonitoringKualitasAirDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // lblNamaIrigasi
             // 
@@ -213,6 +224,40 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(752, 200);
             this.dataGridView1.TabIndex = 13;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // idirigasiDataGridViewTextBoxColumn
+            // 
+            this.idirigasiDataGridViewTextBoxColumn.DataPropertyName = "id_irigasi";
+            this.idirigasiDataGridViewTextBoxColumn.HeaderText = "id_irigasi";
+            this.idirigasiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idirigasiDataGridViewTextBoxColumn.Name = "idirigasiDataGridViewTextBoxColumn";
+            this.idirigasiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idirigasiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // namairigasiDataGridViewTextBoxColumn
+            // 
+            this.namairigasiDataGridViewTextBoxColumn.DataPropertyName = "nama_irigasi";
+            this.namairigasiDataGridViewTextBoxColumn.HeaderText = "nama_irigasi";
+            this.namairigasiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.namairigasiDataGridViewTextBoxColumn.Name = "namairigasiDataGridViewTextBoxColumn";
+            this.namairigasiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // jenisirigasiDataGridViewTextBoxColumn
+            // 
+            this.jenisirigasiDataGridViewTextBoxColumn.DataPropertyName = "jenis_irigasi";
+            this.jenisirigasiDataGridViewTextBoxColumn.HeaderText = "jenis_irigasi";
+            this.jenisirigasiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.jenisirigasiDataGridViewTextBoxColumn.Name = "jenisirigasiDataGridViewTextBoxColumn";
+            this.jenisirigasiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // lokasiDataGridViewTextBoxColumn
+            // 
+            this.lokasiDataGridViewTextBoxColumn.DataPropertyName = "lokasi";
+            this.lokasiDataGridViewTextBoxColumn.HeaderText = "lokasi";
+            this.lokasiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.lokasiDataGridViewTextBoxColumn.Name = "lokasiDataGridViewTextBoxColumn";
+            this.lokasiDataGridViewTextBoxColumn.Width = 125;
             // 
             // btnKembali
             // 
@@ -250,9 +295,35 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(800, 27);
+            this.bindingNavigator1.Size = new System.Drawing.Size(800, 31);
             this.bindingNavigator1.TabIndex = 15;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            this.bindingNavigator1.RefreshItems += new System.EventHandler(this.bindingNavigator1_RefreshItems);
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -260,7 +331,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -269,13 +340,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -287,17 +358,10 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -305,7 +369,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -314,84 +378,33 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // dBMonitoringKualitasAirDataSet2
-            // 
-            this.dBMonitoringKualitasAirDataSet2.DataSetName = "DBMonitoringKualitasAirDataSet2";
-            this.dBMonitoringKualitasAirDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // irigasiBindingSource
-            // 
-            this.irigasiBindingSource.DataMember = "Irigasi";
-            this.irigasiBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet2;
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // irigasiTableAdapter
             // 
             this.irigasiTableAdapter.ClearBeforeFill = true;
             // 
-            // idirigasiDataGridViewTextBoxColumn
+            // lblTotal
             // 
-            this.idirigasiDataGridViewTextBoxColumn.DataPropertyName = "id_irigasi";
-            this.idirigasiDataGridViewTextBoxColumn.HeaderText = "id_irigasi";
-            this.idirigasiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idirigasiDataGridViewTextBoxColumn.Name = "idirigasiDataGridViewTextBoxColumn";
-            this.idirigasiDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idirigasiDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // namairigasiDataGridViewTextBoxColumn
-            // 
-            this.namairigasiDataGridViewTextBoxColumn.DataPropertyName = "nama_irigasi";
-            this.namairigasiDataGridViewTextBoxColumn.HeaderText = "nama_irigasi";
-            this.namairigasiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.namairigasiDataGridViewTextBoxColumn.Name = "namairigasiDataGridViewTextBoxColumn";
-            this.namairigasiDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // jenisirigasiDataGridViewTextBoxColumn
-            // 
-            this.jenisirigasiDataGridViewTextBoxColumn.DataPropertyName = "jenis_irigasi";
-            this.jenisirigasiDataGridViewTextBoxColumn.HeaderText = "jenis_irigasi";
-            this.jenisirigasiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.jenisirigasiDataGridViewTextBoxColumn.Name = "jenisirigasiDataGridViewTextBoxColumn";
-            this.jenisirigasiDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // lokasiDataGridViewTextBoxColumn
-            // 
-            this.lokasiDataGridViewTextBoxColumn.DataPropertyName = "lokasi";
-            this.lokasiDataGridViewTextBoxColumn.HeaderText = "lokasi";
-            this.lokasiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.lokasiDataGridViewTextBoxColumn.Name = "lokasiDataGridViewTextBoxColumn";
-            this.lokasiDataGridViewTextBoxColumn.Width = 125;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(629, 165);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(85, 16);
+            this.lblTotal.TabIndex = 16;
+            this.lblTotal.Text = "jumlah Irigasi";
             // 
             // Irigasi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.btnKembali);
             this.Controls.Add(this.dataGridView1);
@@ -411,12 +424,12 @@
             this.Name = "Irigasi";
             this.Text = "Irigasi";
             this.Load += new System.EventHandler(this.Irigasi_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.irigasiBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.irigasiBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +471,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn namairigasiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn jenisirigasiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lokasiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblTotal;
     }
 }
