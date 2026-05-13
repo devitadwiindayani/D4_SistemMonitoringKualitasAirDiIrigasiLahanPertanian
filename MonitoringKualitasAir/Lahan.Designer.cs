@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lahan));
             this.lblLahan = new System.Windows.Forms.Label();
             this.txtIDLahan = new System.Windows.Forms.TextBox();
+            this.lahanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBMonitoringKualitasAirDataSet1 = new DBMonitoringKualitasAirDataSet1();
             this.btnConnect = new System.Windows.Forms.Button();
             this.lblNamaLahan = new System.Windows.Forms.Label();
             this.lblLokasi = new System.Windows.Forms.Label();
@@ -44,31 +46,30 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnKembali = new System.Windows.Forms.Button();
-            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.dBMonitoringKualitasAirDataSet1 = new DBMonitoringKualitasAirDataSet1();
-            this.lahanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lahanTableAdapter = new DBMonitoringKualitasAirDataSet1TableAdapters.LahanTableAdapter();
             this.idlahanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namalahanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lokasiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.luaslahanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnKembali = new System.Windows.Forms.Button();
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.lahanTableAdapter = new DBMonitoringKualitasAirDataSet1TableAdapters.LahanTableAdapter();
+            this.lblTotal = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.lahanBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lahanBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblLahan
@@ -88,6 +89,16 @@
             this.txtIDLahan.ReadOnly = true;
             this.txtIDLahan.Size = new System.Drawing.Size(100, 22);
             this.txtIDLahan.TabIndex = 1;
+            // 
+            // lahanBindingSource
+            // 
+            this.lahanBindingSource.DataMember = "Lahan";
+            this.lahanBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet1;
+            // 
+            // dBMonitoringKualitasAirDataSet1
+            // 
+            this.dBMonitoringKualitasAirDataSet1.DataSetName = "DBMonitoringKualitasAirDataSet1";
+            this.dBMonitoringKualitasAirDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnConnect
             // 
@@ -214,6 +225,39 @@
             this.dataGridView1.Size = new System.Drawing.Size(708, 182);
             this.dataGridView1.TabIndex = 13;
             // 
+            // idlahanDataGridViewTextBoxColumn
+            // 
+            this.idlahanDataGridViewTextBoxColumn.DataPropertyName = "id_lahan";
+            this.idlahanDataGridViewTextBoxColumn.HeaderText = "id_lahan";
+            this.idlahanDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idlahanDataGridViewTextBoxColumn.Name = "idlahanDataGridViewTextBoxColumn";
+            this.idlahanDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idlahanDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // namalahanDataGridViewTextBoxColumn
+            // 
+            this.namalahanDataGridViewTextBoxColumn.DataPropertyName = "nama_lahan";
+            this.namalahanDataGridViewTextBoxColumn.HeaderText = "nama_lahan";
+            this.namalahanDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.namalahanDataGridViewTextBoxColumn.Name = "namalahanDataGridViewTextBoxColumn";
+            this.namalahanDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // lokasiDataGridViewTextBoxColumn
+            // 
+            this.lokasiDataGridViewTextBoxColumn.DataPropertyName = "lokasi";
+            this.lokasiDataGridViewTextBoxColumn.HeaderText = "lokasi";
+            this.lokasiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.lokasiDataGridViewTextBoxColumn.Name = "lokasiDataGridViewTextBoxColumn";
+            this.lokasiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // luaslahanDataGridViewTextBoxColumn
+            // 
+            this.luaslahanDataGridViewTextBoxColumn.DataPropertyName = "luas_lahan";
+            this.luaslahanDataGridViewTextBoxColumn.HeaderText = "luas_lahan";
+            this.luaslahanDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.luaslahanDataGridViewTextBoxColumn.Name = "luaslahanDataGridViewTextBoxColumn";
+            this.luaslahanDataGridViewTextBoxColumn.Width = 125;
+            // 
             // btnKembali
             // 
             this.btnKembali.Location = new System.Drawing.Point(630, 400);
@@ -250,9 +294,34 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(800, 27);
+            this.bindingNavigator1.Size = new System.Drawing.Size(800, 31);
             this.bindingNavigator1.TabIndex = 15;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 28);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -260,7 +329,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveFirstItem.Text = "Move first";
             // 
             // bindingNavigatorMovePreviousItem
@@ -269,13 +338,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -287,17 +356,10 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(45, 24);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -305,7 +367,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // bindingNavigatorMoveLastItem
@@ -314,84 +376,33 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // dBMonitoringKualitasAirDataSet1
-            // 
-            this.dBMonitoringKualitasAirDataSet1.DataSetName = "DBMonitoringKualitasAirDataSet1";
-            this.dBMonitoringKualitasAirDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // lahanBindingSource
-            // 
-            this.lahanBindingSource.DataMember = "Lahan";
-            this.lahanBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet1;
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
             // 
             // lahanTableAdapter
             // 
             this.lahanTableAdapter.ClearBeforeFill = true;
             // 
-            // idlahanDataGridViewTextBoxColumn
+            // lblTotal
             // 
-            this.idlahanDataGridViewTextBoxColumn.DataPropertyName = "id_lahan";
-            this.idlahanDataGridViewTextBoxColumn.HeaderText = "id_lahan";
-            this.idlahanDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idlahanDataGridViewTextBoxColumn.Name = "idlahanDataGridViewTextBoxColumn";
-            this.idlahanDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idlahanDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // namalahanDataGridViewTextBoxColumn
-            // 
-            this.namalahanDataGridViewTextBoxColumn.DataPropertyName = "nama_lahan";
-            this.namalahanDataGridViewTextBoxColumn.HeaderText = "nama_lahan";
-            this.namalahanDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.namalahanDataGridViewTextBoxColumn.Name = "namalahanDataGridViewTextBoxColumn";
-            this.namalahanDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // lokasiDataGridViewTextBoxColumn
-            // 
-            this.lokasiDataGridViewTextBoxColumn.DataPropertyName = "lokasi";
-            this.lokasiDataGridViewTextBoxColumn.HeaderText = "lokasi";
-            this.lokasiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.lokasiDataGridViewTextBoxColumn.Name = "lokasiDataGridViewTextBoxColumn";
-            this.lokasiDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // luaslahanDataGridViewTextBoxColumn
-            // 
-            this.luaslahanDataGridViewTextBoxColumn.DataPropertyName = "luas_lahan";
-            this.luaslahanDataGridViewTextBoxColumn.HeaderText = "luas_lahan";
-            this.luaslahanDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.luaslahanDataGridViewTextBoxColumn.Name = "luaslahanDataGridViewTextBoxColumn";
-            this.luaslahanDataGridViewTextBoxColumn.Width = 125;
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Location = new System.Drawing.Point(91, 421);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(78, 16);
+            this.lblTotal.TabIndex = 16;
+            this.lblTotal.Text = "Total Lahan";
             // 
             // Lahan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.btnKembali);
             this.Controls.Add(this.dataGridView1);
@@ -411,12 +422,12 @@
             this.Name = "Lahan";
             this.Text = "Lahan";
             this.Load += new System.EventHandler(this.Lahan_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.lahanBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lahanBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -458,5 +469,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn namalahanDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lokasiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn luaslahanDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

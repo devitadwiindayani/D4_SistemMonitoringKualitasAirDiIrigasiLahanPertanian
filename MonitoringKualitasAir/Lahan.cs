@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -11,6 +12,12 @@ namespace MonitoringKualitasAir
         "Data Source=LAPTOP-GO2648H1\\DEVITADWI; Initial Catalog=DBMonitoringKualitasAir; Integrated Security=True";
 
         private string role;
+
+        // ====================================================
+        // MODUL STORED PROCEDURE
+        // ====================================================
+        private BindingSource bindingSource = new BindingSource();
+        private DataTable dtLahan = new DataTable();
 
         public Lahan()
         {
@@ -29,10 +36,11 @@ namespace MonitoringKualitasAir
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
+                if (conn.State == ConnectionState.Closed)
                 {
                     conn.Open();
                 }
+
                 MessageBox.Show("Koneksi berhasil");
             }
             catch (Exception ex)
@@ -50,6 +58,7 @@ namespace MonitoringKualitasAir
         {
             // TODO: This line of code loads data into the 'dBMonitoringKualitasAirDataSet1.Lahan' table. You can move, or remove it, as needed.
             this.lahanTableAdapter.Fill(this.dBMonitoringKualitasAirDataSet1.Lahan);
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
@@ -57,42 +66,40 @@ namespace MonitoringKualitasAir
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dataGridView1.CellClick += dataGridView1_CellClick;
+
+            // TAMBAHAN PENTING
+            bindingNavigator1.BindingSource = bindingSource;
+
             ApplyRole();
+
+            LoadData();
         }
 
-        private void btnLoad_Click(object sender, EventArgs e)
+        private void LoadData()
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_GetLahan", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            dtLahan = new DataTable();
+
+                            da.Fill(dtLahan);
+
+                            bindingSource.DataSource = dtLahan;
+                            dataGridView1.DataSource = bindingSource;
+
+                            BindControls();
+                        }
+                    }
                 }
 
-                dataGridView1.Rows.Clear();
-                dataGridView1.Columns.Clear();
-
-                dataGridView1.Columns.Add("ID_Lahan", "ID Lahan");
-                dataGridView1.Columns.Add("Nama_Lahan", "Nama Lahan");
-                dataGridView1.Columns.Add("Lokasi", "Lokasi");
-                dataGridView1.Columns.Add("Luas_Lahan", "Luas Lahan");
-
-                string query = "SELECT * FROM Lahan";
-
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    dataGridView1.Rows.Add(
-                        reader["ID_Lahan"].ToString(),
-                        reader["Nama_Lahan"].ToString(),
-                        reader["Lokasi"].ToString(),
-                        reader["Luas_Lahan"].ToString()
-                    );
-                }
-
-                reader.Close();
+                HitungTotal();
             }
             catch (Exception ex)
             {
@@ -100,38 +107,58 @@ namespace MonitoringKualitasAir
             }
         }
 
+        private void BindControls()
+        {
+            txtIDLahan.DataBindings.Clear();
+            txtNamaLahan.DataBindings.Clear();
+            txtLokasi.DataBindings.Clear();
+            txtLuasLahan.DataBindings.Clear();
+
+            txtIDLahan.DataBindings.Add("Text", bindingSource, "ID_Lahan");
+            txtNamaLahan.DataBindings.Add("Text", bindingSource, "Nama_Lahan");
+            txtLokasi.DataBindings.Add("Text", bindingSource, "Lokasi");
+            txtLuasLahan.DataBindings.Add("Text", bindingSource, "Luas_Lahan");
+        }
+
+        private void btnLoad_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
         private void btnInsert_Click(object sender, EventArgs e)
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
-                }
+                    using (SqlCommand cmd = new SqlCommand("sp_InsertLahan", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                string query = @"INSERT INTO Lahan
-                (Nama_Lahan, Lokasi, Luas_Lahan)
-                VALUES
-                (@Nama, @Lokasi, @Luas)";
+                        cmd.Parameters.AddWithValue("@Nama_Lahan", txtNamaLahan.Text);
+                        cmd.Parameters.AddWithValue("@Lokasi", txtLokasi.Text);
+                        cmd.Parameters.AddWithValue("@Luas_Lahan", txtLuasLahan.Text);
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                        conn.Open();
 
-                //cmd.Parameters.AddWithValue("@ID", txtIDLahan.Text);
-                cmd.Parameters.AddWithValue("@Nama", txtNamaLahan.Text);
-                cmd.Parameters.AddWithValue("@Lokasi", txtLokasi.Text);
-                cmd.Parameters.AddWithValue("@Luas", txtLuasLahan.Text);
+                        int result = cmd.ExecuteNonQuery();
 
-                int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Data berhasil ditambahkan");
+                            ClearForm();
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data gagal ditambahkan");
+                        }
 
-                if (result > 0)
-                {
-                    MessageBox.Show("Data berhasil ditambahkan");
-                    ClearForm();
-                    btnLoad.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("Data gagal ditambahkan");
+                        if (conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -144,35 +171,37 @@ namespace MonitoringKualitasAir
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
-                }
+                    using (SqlCommand cmd = new SqlCommand("sp_UpdateLahan", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                string query = @"UPDATE Lahan
-                SET Nama_Lahan = @Nama,
-                    Lokasi = @Lokasi,
-                    Luas_Lahan = @Luas
-                WHERE ID_Lahan = @ID";
+                        cmd.Parameters.AddWithValue("@ID_Lahan", txtIDLahan.Text);
+                        cmd.Parameters.AddWithValue("@Nama_Lahan", txtNamaLahan.Text);
+                        cmd.Parameters.AddWithValue("@Lokasi", txtLokasi.Text);
+                        cmd.Parameters.AddWithValue("@Luas_Lahan", txtLuasLahan.Text);
 
-                SqlCommand cmd = new SqlCommand(query, conn);
+                        conn.Open();
 
-                cmd.Parameters.AddWithValue("@ID", txtIDLahan.Text);
-                cmd.Parameters.AddWithValue("@Nama", txtNamaLahan.Text);
-                cmd.Parameters.AddWithValue("@Lokasi", txtLokasi.Text);
-                cmd.Parameters.AddWithValue("@Luas", txtLuasLahan.Text);
+                        int result = cmd.ExecuteNonQuery();
 
-                int result = cmd.ExecuteNonQuery();
+                        if (result > 0)
+                        {
+                            MessageBox.Show("Data berhasil diupdate");
+                            ClearForm();
+                            LoadData();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Data tidak ditemukan");
+                        }
 
-                if (result > 0)
-                {
-                    MessageBox.Show("Data berhasil diupdate");
-                    ClearForm();
-                    btnLoad.PerformClick();
-                }
-                else
-                {
-                    MessageBox.Show("Data tidak ditemukan");
+                        if (conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -185,11 +214,6 @@ namespace MonitoringKualitasAir
         {
             try
             {
-                if (conn.State == System.Data.ConnectionState.Closed)
-                {
-                    conn.Open();
-                }
-
                 DialogResult resultConfirm = MessageBox.Show(
                     "Yakin ingin menghapus data?",
                     "Konfirmasi",
@@ -198,22 +222,34 @@ namespace MonitoringKualitasAir
 
                 if (resultConfirm == DialogResult.Yes)
                 {
-                    string query = "DELETE FROM Lahan WHERE ID_Lahan = @ID";
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ID", txtIDLahan.Text);
-
-                    int result = cmd.ExecuteNonQuery();
-
-                    if (result > 0)
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
-                        MessageBox.Show("Data berhasil dihapus");
-                        ClearForm();
-                        btnLoad.PerformClick();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Data tidak ditemukan");
+                        using (SqlCommand cmd = new SqlCommand("sp_DeleteLahan", conn))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("@ID_Lahan", txtIDLahan.Text);
+
+                            conn.Open();
+
+                            int result = cmd.ExecuteNonQuery();
+
+                            if (result > 0)
+                            {
+                                MessageBox.Show("Data berhasil dihapus");
+                                ClearForm();
+                                LoadData();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Data tidak ditemukan");
+                            }
+
+                            if (conn.State == ConnectionState.Open)
+                            {
+                                conn.Close();
+                            }
+                        }
                     }
                 }
             }
@@ -229,11 +265,12 @@ namespace MonitoringKualitasAir
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-                txtIDLahan.Text = row.Cells["ID_Lahan"].Value.ToString();
-                txtNamaLahan.Text = row.Cells["Nama_Lahan"].Value.ToString();
-                txtLokasi.Text = row.Cells["Lokasi"].Value.ToString();
-                txtLuasLahan.Text = row.Cells["Luas_Lahan"].Value.ToString();
+                txtIDLahan.Text = row.Cells[0].Value.ToString();
+                txtNamaLahan.Text = row.Cells[1].Value.ToString();
+                txtLokasi.Text = row.Cells[2].Value.ToString();
+                txtLuasLahan.Text = row.Cells[3].Value.ToString();
             }
+
         }
 
         private void ClearForm()
@@ -256,17 +293,37 @@ namespace MonitoringKualitasAir
         // referensi gpt
         private void ApplyRole()
         {
-            if (role == "Petugas")
-            {
-                // ❌ MATIKAN CRUD
-                btnInsert.Enabled = false;
-                btnUpdate.Enabled = false;
-                btnDelete.Enabled = false;
 
-                // ❌ matikan input (kalau ada textbox)
-                txtNamaLahan.Enabled = false;
-                txtLokasi.Enabled = false;
-                txtLuasLahan.Enabled = false;
+        }
+
+        private void HitungTotal()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("sp_CountLahan", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        SqlParameter outputParam =
+                            new SqlParameter("@Total", SqlDbType.Int);
+
+                        outputParam.Direction = ParameterDirection.Output;
+
+                        cmd.Parameters.Add(outputParam);
+
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+
+                        lblTotal.Text =
+                            "Total Lahan : " + outputParam.Value.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal menghitung total: " + ex.Message);
             }
         }
     }
