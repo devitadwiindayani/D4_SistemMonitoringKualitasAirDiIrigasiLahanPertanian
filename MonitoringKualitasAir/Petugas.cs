@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace MonitoringKualitasAir
 {
@@ -13,7 +14,7 @@ namespace MonitoringKualitasAir
 
         private string role;
 
-        // Storage Procedu
+        // Storage Procedure Components
         private BindingSource bindingSource = new BindingSource();
         private DataTable dtPetugas = new DataTable();
 
@@ -54,22 +55,25 @@ namespace MonitoringKualitasAir
         //FORM LOAD
         private void Petugas_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dBMonitoringKualitasAirDataSet.Petugas' table. You can move, or remove it, as needed.
+            // Menampilkan data awal melalui dataset bawaan
             this.petugasTableAdapter.Fill(this.dBMonitoringKualitasAirDataSet.Petugas);
+
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
             dataGridView1.ReadOnly = true;
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-            //dataGridView1.CellClick += dataGridView1_CellClick;
+            // PENTING: Menghubungkan bindingNavigator dengan data dari Stored Procedure
+            bindingNavigator1.BindingSource = bindingSource;
 
+            // Jalankan pembatasan hak akses terlebih dahulu sebelum memuat data SP
             ApplyRole();
 
+            // Memuat data menggunakan Stored Procedure
+            LoadData();
         }
-        //dataGridView1.CellClick += dataGridView1_CellClick;
-        //ApplyRole();
-        //tambahan yg bawah ini
+
         // ====================================================
         // LOAD DATA (SP SELECT)
         // ====================================================
@@ -86,7 +90,6 @@ namespace MonitoringKualitasAir
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
                             dtPetugas = new DataTable();
-
                             da.Fill(dtPetugas);
 
                             bindingSource.DataSource = dtPetugas;
@@ -120,7 +123,6 @@ namespace MonitoringKualitasAir
             txtNoHP.DataBindings.Add("Text", bindingSource, "No_HP");
         }
 
-
         private void btnLoad_Click(object sender, EventArgs e)
         {
             LoadData();
@@ -128,6 +130,39 @@ namespace MonitoringKualitasAir
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            // 1. Validasi Input Kosong
+            if (string.IsNullOrWhiteSpace(txtNamaPetugas.Text) || string.IsNullOrWhiteSpace(txtNoHP.Text))
+            {
+                MessageBox.Show("Nama Petugas dan Nomor HP tidak boleh kosong!", "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validasi Hanya Huruf dan Spasi untuk Nama Petugas
+            if (!Regex.IsMatch(txtNamaPetugas.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Nama petugas hanya boleh berisi huruf dan spasi (tidak boleh mengandung angka atau simbol).",
+                                "Format Nama Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaPetugas.Focus();
+                return;
+            }
+
+            // 3. Validasi Hanya Angka dan Panjang Karakter untuk No HP
+            if (!Regex.IsMatch(txtNoHP.Text, @"^[0-9]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Nomor HP hanya boleh berisi angka.",
+                                "Format No HP Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNoHP.Focus();
+                return;
+            }
+
+            if (txtNoHP.Text.Length < 10 || txtNoHP.Text.Length > 15)
+            {
+                MessageBox.Show("Gagal menyimpan! Panjang Nomor HP harus di antara 10 sampai 15 digit.",
+                                "Format No HP Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNoHP.Focus();
+                return;
+            }
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -140,7 +175,6 @@ namespace MonitoringKualitasAir
                         cmd.Parameters.AddWithValue("@No_HP", txtNoHP.Text);
 
                         conn.Open();
-
                         int result = cmd.ExecuteNonQuery();
 
                         if (result > 0)
@@ -153,11 +187,6 @@ namespace MonitoringKualitasAir
                         {
                             MessageBox.Show("Data gagal ditambahkan");
                         }
-
-                        if (conn.State == ConnectionState.Open)
-                        {
-                            conn.Close();
-                        }
                     }
                 }
             }
@@ -169,6 +198,45 @@ namespace MonitoringKualitasAir
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // 1. Validasi pastikan ID Petugas dan data lainnya tidak kosong
+            if (string.IsNullOrWhiteSpace(txtIDPetugas.Text))
+            {
+                MessageBox.Show("Silakan pilih atau tentukan ID Petugas yang akan diubah terlebih dahulu!", "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNamaPetugas.Text) || string.IsNullOrWhiteSpace(txtNoHP.Text))
+            {
+                MessageBox.Show("Nama Petugas dan Nomor HP tidak boleh dikosongkan!", "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validasi format Nama Petugas (Hanya Huruf dan Spasi)
+            if (!Regex.IsMatch(txtNamaPetugas.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("Gagal memperbarui data! Nama petugas hanya boleh berisi huruf dan spasi (tidak boleh ada angka atau simbol).",
+                                "Format Nama Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaPetugas.Focus();
+                return;
+            }
+
+            // 3. Validasi format Nomor HP (Hanya Angka dan Panjang 10-15 digit)
+            if (!Regex.IsMatch(txtNoHP.Text, @"^[0-9]+$"))
+            {
+                MessageBox.Show("Gagal memperbarui data! Nomor HP hanya boleh berisi angka.",
+                                "Format No HP Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNoHP.Focus();
+                return;
+            }
+
+            if (txtNoHP.Text.Length < 10 || txtNoHP.Text.Length > 15)
+            {
+                MessageBox.Show("Gagal memperbarui data! Panjang Nomor HP harus di antara 10 sampai 15 digit.",
+                                "Format No HP Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNoHP.Focus();
+                return;
+            }
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -182,7 +250,6 @@ namespace MonitoringKualitasAir
                         cmd.Parameters.AddWithValue("@No_HP", txtNoHP.Text);
 
                         conn.Open();
-
                         int result = cmd.ExecuteNonQuery();
 
                         if (result > 0)
@@ -194,11 +261,6 @@ namespace MonitoringKualitasAir
                         else
                         {
                             MessageBox.Show("Data tidak ditemukan");
-                        }
-
-                        if (conn.State == ConnectionState.Open)
-                        {
-                            conn.Close();
                         }
                     }
                 }
@@ -226,11 +288,9 @@ namespace MonitoringKualitasAir
                         using (SqlCommand cmd = new SqlCommand("sp_DeletePetugas", conn))
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-
                             cmd.Parameters.AddWithValue("@ID_Petugas", txtIDPetugas.Text);
 
                             conn.Open();
-
                             int result = cmd.ExecuteNonQuery();
 
                             if (result > 0)
@@ -243,11 +303,6 @@ namespace MonitoringKualitasAir
                             {
                                 MessageBox.Show("Data tidak ditemukan");
                             }
-
-                            if (conn.State == ConnectionState.Open)
-                            {
-                                conn.Close();
-                            }
                         }
                     }
                 }
@@ -258,7 +313,6 @@ namespace MonitoringKualitasAir
             }
         }
 
-
         private void ClearForm()
         {
             txtIDPetugas.Clear();
@@ -268,26 +322,47 @@ namespace MonitoringKualitasAir
             txtIDPetugas.Focus();
         }
 
+        // ====================================================
+        // TOMBOL KEMBALI KE DASHBOARD
+        // ====================================================
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            Dashboard f = new Dashboard();
+            // Melempar kembali data role ke Dashboard agar hak akses menu tetap terjaga
+            Dashboard f = new Dashboard(role);
             f.Show();
-            this.Hide();
+            this.Close(); // Menggunakan Close() agar memori form ini langsung dibersihkan
         }
 
-        // Referensi gpt
+        // ====================================================
+        // MANAJEMEN HAK AKSES ROLE USER
+        // ====================================================
         private void ApplyRole()
         {
-            if (role == "Petugas")
+            // Menggunakan StringComparison agar pengecekan huruf kapital "petugas" / "Petugas" aman
+            if (role != null && role.Equals("petugas", StringComparison.OrdinalIgnoreCase))
             {
-                // MATIKAN CRUD
+                // Matikan Tombol CRUD untuk Petugas (Hanya Admin yang bisa kelola data Petugas)
                 btnInsert.Enabled = false;
                 btnUpdate.Enabled = false;
                 btnDelete.Enabled = false;
 
-                // OPTIONAL: kalau ada textbox input
+                // Mematikan inputan textbox agar petugas tidak bisa iseng mengetik data
                 txtNamaPetugas.Enabled = false;
                 txtNoHP.Enabled = false;
+
+                this.Text = "Monitoring Kualitas Air - Data Petugas (Mode View / Petugas)";
+            }
+            else
+            {
+                // Jika login sebagai Admin, aktifkan semua fitur penuh
+                btnInsert.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+
+                txtNamaPetugas.Enabled = true;
+                txtNoHP.Enabled = true;
+
+                this.Text = "Monitoring Kualitas Air - Data Petugas (Mode CRUD / Admin)";
             }
         }
 
@@ -303,7 +378,7 @@ namespace MonitoringKualitasAir
             }
         }
 
-        //hitung tottal
+        // Menghitung total data menggunakan SP Output Parameter
         private void HitungTotal()
         {
             try
@@ -314,18 +389,14 @@ namespace MonitoringKualitasAir
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        SqlParameter outputParam =
-                            new SqlParameter("@Total", SqlDbType.Int);
-
+                        SqlParameter outputParam = new SqlParameter("@Total", SqlDbType.Int);
                         outputParam.Direction = ParameterDirection.Output;
-
                         cmd.Parameters.Add(outputParam);
 
                         conn.Open();
                         cmd.ExecuteNonQuery();
 
-                        lblTotal.Text =
-                            "Total Petugas : " + outputParam.Value.ToString();
+                        lblTotal.Text = "Total Petugas : " + outputParam.Value.ToString();
                     }
                 }
             }
@@ -337,12 +408,10 @@ namespace MonitoringKualitasAir
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
         {
-
         }
     }
 }
