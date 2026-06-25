@@ -14,6 +14,7 @@ namespace MonitoringKualitasAir
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.SetData("SQLServerCompactEditionUnderBuiltInProbing", true);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());
