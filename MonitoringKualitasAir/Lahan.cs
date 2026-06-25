@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace MonitoringKualitasAir
 {
@@ -127,6 +128,56 @@ namespace MonitoringKualitasAir
 
         private void btnInsert_Click(object sender, EventArgs e)
         {
+            // 1. Validasi Input Kosong
+            if (string.IsNullOrWhiteSpace(txtNamaLahan.Text) ||
+                string.IsNullOrWhiteSpace(txtLokasi.Text) ||
+                string.IsNullOrWhiteSpace(txtLuasLahan.Text))
+            {
+                MessageBox.Show("Semua kolom (Nama Lahan, Lokasi, Luas Lahan) wajib diisi!",
+                                "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validasi Nama Lahan (Hanya Huruf, Angka, dan Spasi)
+            // Sesuai dengan revisi constraint CK_NamaLahan: NOT LIKE '%[^A-Za-z0-9 ]%'
+            if (!Regex.IsMatch(txtNamaLahan.Text, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Nama lahan hanya boleh berisi huruf, angka, dan spasi.",
+                                "Format Nama Lahan Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaLahan.Focus();
+                return;
+            }
+
+            // 3. Validasi Lokasi Lahan (Hanya Huruf dan Spasi)
+            // Sesuai dengan constraint bawaan: NOT LIKE '%[^A-Za-z ]%'
+            if (!Regex.IsMatch(txtLokasi.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Lokasi hanya boleh berisi huruf dan spasi (tidak boleh ada angka/simbol).",
+                                "Format Lokasi Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLokasi.Focus();
+                return;
+            }
+
+            // 4. Validasi Luas Lahan (Harus Angka dan Harus > 0)
+            // Sesuai dengan constraint: CHECK (luas_lahan > 0)
+            int luasLahan;
+            bool isAngka = int.TryParse(txtLuasLahan.Text, out luasLahan);
+
+            if (!isAngka)
+            {
+                MessageBox.Show("Gagal menyimpan! Luas lahan harus berupa angka bulat utuh.",
+                                "Format Luas Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLuasLahan.Focus();
+                return;
+            }
+
+            if (luasLahan <= 0)
+            {
+                MessageBox.Show("Gagal menyimpan! Luas lahan harus lebih besar dari 0.",
+                                "Nilai Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLuasLahan.Focus();
+                return;
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -169,6 +220,56 @@ namespace MonitoringKualitasAir
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // 1. Validasi Input Kosong
+            if (string.IsNullOrWhiteSpace(txtNamaLahan.Text) ||
+                string.IsNullOrWhiteSpace(txtLokasi.Text) ||
+                string.IsNullOrWhiteSpace(txtLuasLahan.Text))
+            {
+                MessageBox.Show("Semua kolom (Nama Lahan, Lokasi, Luas Lahan) wajib diisi!",
+                                "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validasi Nama Lahan (Hanya Huruf, Angka, dan Spasi)
+            // Sesuai dengan revisi constraint CK_NamaLahan: NOT LIKE '%[^A-Za-z0-9 ]%'
+            if (!Regex.IsMatch(txtNamaLahan.Text, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Nama lahan hanya boleh berisi huruf, angka, dan spasi.",
+                                "Format Nama Lahan Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaLahan.Focus();
+                return;
+            }
+
+            // 3. Validasi Lokasi Lahan (Hanya Huruf dan Spasi)
+            // Sesuai dengan constraint bawaan: NOT LIKE '%[^A-Za-z ]%'
+            if (!Regex.IsMatch(txtLokasi.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Lokasi hanya boleh berisi huruf dan spasi (tidak boleh ada angka/simbol).",
+                                "Format Lokasi Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLokasi.Focus();
+                return;
+            }
+
+            // 4. Validasi Luas Lahan (Harus Angka dan Harus > 0)
+            // Sesuai dengan constraint: CHECK (luas_lahan > 0)
+            int luasLahan;
+            bool isAngka = int.TryParse(txtLuasLahan.Text, out luasLahan);
+
+            if (!isAngka)
+            {
+                MessageBox.Show("Gagal menyimpan! Luas lahan harus berupa angka bulat utuh.",
+                                "Format Luas Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLuasLahan.Focus();
+                return;
+            }
+
+            if (luasLahan <= 0)
+            {
+                MessageBox.Show("Gagal menyimpan! Luas lahan harus lebih besar dari 0.",
+                                "Nilai Tidak Valid", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtLuasLahan.Focus();
+                return;
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -285,15 +386,37 @@ namespace MonitoringKualitasAir
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Dashboard f = new Dashboard();
+            // Kirim balik variabel role saat kembali ke Dashboard agar menu di dashboard tidak error
+            Dashboard f = new Dashboard(role);
             f.Show();
-            this.Hide();
+            this.Close();
         }
 
         // referensi gpt
         private void ApplyRole()
         {
+            // Pastikan pengecekan tidak sensitif huruf besar/kecil (petugas / Petugas)
+            if (role != null && role.Equals("petugas", StringComparison.OrdinalIgnoreCase))
+            {
+                // Nonaktifkan tombol CRUD untuk Petugas (Hanya bisa baca data)
+                btnInsert.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
 
+                // Jika di Form ini ada tombol "Import Excel", nonaktifkan juga di sini:
+                // btnImportExcel.Enabled = false;
+
+                // Beri tahu pengguna via title form (opsional agar user tau rolenya)
+                this.Text = "Monitoring Kualitas Air - Lahan (Mode View/Petugas)";
+            }
+            else
+            {
+                // Admin bisa melakukan semua hal
+                btnInsert.Enabled = true;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+                this.Text = "Monitoring Kualitas Air - Lahan (Mode CRUD/Admin)";
+            }
         }
 
         private void HitungTotal()
