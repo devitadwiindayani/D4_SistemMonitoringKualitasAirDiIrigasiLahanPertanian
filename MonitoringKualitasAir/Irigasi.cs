@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace MonitoringKualitasAir
@@ -11,6 +12,7 @@ namespace MonitoringKualitasAir
         private readonly string connectionString =
         "Data Source=LAPTOP-GO2648H1\\DEVITADWI; Initial Catalog=DBMonitoringKualitasAir; Integrated Security=True";
 
+        private string role;
 
         // ====================================================
         // MODUL STORED PROCEDURE
@@ -53,8 +55,49 @@ namespace MonitoringKualitasAir
             ConnectDatabase();
         }
 
+        // TOMBOL INSERT / SIMPAN
         private void button3_Click(object sender, EventArgs e)
         {
+            // 1. Validasi Input Kosong untuk Kolom Utama (Nama Irigasi)
+            if (string.IsNullOrWhiteSpace(txtNamaIrigasi.Text))
+            {
+                MessageBox.Show("Nama Irigasi wajib diisi!", "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaIrigasi.Focus();
+                return;
+            }
+
+            // 2. Validasi Nama Irigasi (Hanya Huruf dan Spasi)
+            if (!Regex.IsMatch(txtNamaIrigasi.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Nama irigasi hanya boleh berisi huruf dan spasi.",
+                                "Format Nama Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaIrigasi.Focus();
+                return;
+            }
+
+            // 3. Validasi Jenis Irigasi (Hanya Huruf dan Spasi jika diisi)
+            if (!string.IsNullOrWhiteSpace(txtJenisIrigasi.Text))
+            {
+                if (!Regex.IsMatch(txtJenisIrigasi.Text, @"^[a-zA-Z\s]+$"))
+                {
+                    MessageBox.Show("Gagal menyimpan! Jenis irigasi hanya boleh berisi huruf dan spasi.",
+                                    "Format Jenis Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtJenisIrigasi.Focus();
+                    return;
+                }
+            }
+
+            // 4. Validasi Lokasi Irigasi (Hanya Huruf dan Spasi jika diisi)
+            if (!string.IsNullOrWhiteSpace(txtLokasi.Text))
+            {
+                if (!Regex.IsMatch(txtLokasi.Text, @"^[a-zA-Z\s]+$"))
+                {
+                    MessageBox.Show("Gagal menyimpan! Lokasi irigasi hanya boleh berisi huruf dan spasi.",
+                                    "Format Lokasi Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtLokasi.Focus();
+                    return;
+                }
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -81,11 +124,6 @@ namespace MonitoringKualitasAir
                         {
                             MessageBox.Show("Data gagal ditambahkan");
                         }
-
-                        if (conn.State == ConnectionState.Open)
-                        {
-                            conn.Close();
-                        }
                     }
                 }
             }
@@ -95,7 +133,7 @@ namespace MonitoringKualitasAir
             }
         }
 
-
+        // TOMBOL DELETE / HAPUS
         private void button5_Click(object sender, EventArgs e)
         {
             try
@@ -130,11 +168,6 @@ namespace MonitoringKualitasAir
                             {
                                 MessageBox.Show("Data tidak ditemukan");
                             }
-
-                            if (conn.State == ConnectionState.Open)
-                            {
-                                conn.Close();
-                            }
                         }
                     }
                 }
@@ -145,9 +178,9 @@ namespace MonitoringKualitasAir
             }
         }
 
+        // FORM LOAD
         private void Irigasi_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dBMonitoringKualitasAirDataSet1.Irigasi' table. You can move, or remove it, as needed.
             this.irigasiTableAdapter.Fill(this.dBMonitoringKualitasAirDataSet2.Irigasi);
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.MultiSelect = false;
@@ -157,6 +190,10 @@ namespace MonitoringKualitasAir
 
             dataGridView1.CellClick += dataGridView1_CellClick;
 
+            // PENTING: Menghubungkan bindingNavigator dengan data dari Stored Procedure jika ada
+            if (bindingNavigator1 != null) { bindingNavigator1.BindingSource = bindingSource; }
+
+            // Jalankan validasi role sebelum mengambil data
             ApplyRole();
 
             LoadData();
@@ -212,8 +249,49 @@ namespace MonitoringKualitasAir
             LoadData();
         }
 
+        // TOMBOL UPDATE
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            // 1. Validasi Input Kosong untuk Kolom Utama (Nama Irigasi)
+            if (string.IsNullOrWhiteSpace(txtNamaIrigasi.Text))
+            {
+                MessageBox.Show("Nama Irigasi wajib diisi!", "Validasi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaIrigasi.Focus();
+                return;
+            }
+
+            // 2. Validasi Nama Irigasi (Hanya Huruf dan Spasi)
+            if (!Regex.IsMatch(txtNamaIrigasi.Text, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("Gagal menyimpan! Nama irigasi hanya boleh berisi huruf dan spasi.",
+                                "Format Nama Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNamaIrigasi.Focus();
+                return;
+            }
+
+            // 3. Validasi Jenis Irigasi (Hanya Huruf dan Spasi jika diisi)
+            if (!string.IsNullOrWhiteSpace(txtJenisIrigasi.Text))
+            {
+                if (!Regex.IsMatch(txtJenisIrigasi.Text, @"^[a-zA-Z\s]+$"))
+                {
+                    MessageBox.Show("Gagal menyimpan! Jenis irigasi hanya boleh berisi huruf dan spasi.",
+                                    "Format Jenis Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtJenisIrigasi.Focus();
+                    return;
+                }
+            }
+
+            // 4. Validasi Lokasi Irigasi (Hanya Huruf dan Spasi jika diisi)
+            if (!string.IsNullOrWhiteSpace(txtLokasi.Text))
+            {
+                if (!Regex.IsMatch(txtLokasi.Text, @"^[a-zA-Z\s]+$"))
+                {
+                    MessageBox.Show("Gagal menyimpan! Lokasi irigasi hanya boleh berisi huruf dan spasi.",
+                                    "Format Lokasi Salah", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtLokasi.Focus();
+                    return;
+                }
+            }
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -240,11 +318,6 @@ namespace MonitoringKualitasAir
                         else
                         {
                             MessageBox.Show("Data tidak ditemukan");
-                        }
-
-                        if (conn.State == ConnectionState.Open)
-                        {
-                            conn.Close();
                         }
                     }
                 }
@@ -278,37 +351,58 @@ namespace MonitoringKualitasAir
             txtIDIrigasi.Focus();
         }
 
+        // TOMBOL KEMBALI
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            Dashboard f = new Dashboard();
+            Dashboard f = new Dashboard(role);
             f.Show();
-            this.Hide();
+            this.Close();
         }
 
-        private string role;
-
-        // Referensi gpt
+        // ====================================================
+        // MANAJEMEN HAK AKSES ROLE USER
+        // ====================================================
         private void ApplyRole()
         {
-            if (role == "Petugas")
-                // READ ONLY MODE
-                btnInsert.Enabled = true; // INSERT
+            // Menggunakan StringComparison agar pengecekan huruf "Petugas" aman dari typo kapital
+            if (role != null && role.Equals("petugas", StringComparison.OrdinalIgnoreCase))
+            {
+                // MENONAKTIFKAN TOMBOL CRUD (button3=Insert, btnUpdate=Update, button5=Delete)
+                btnInsert.Enabled = false;
+                btnUpdate.Enabled = false;
+                btnDelete.Enabled = false;
+
+                // Menonaktifkan inputan field data agar petugas tidak bisa memodifikasi teks
+                txtNamaIrigasi.Enabled = false;
+                txtJenisIrigasi.Enabled = false;
+                txtLokasi.Enabled = false;
+
+                this.Text = "Monitoring Kualitas Air - Data Irigasi (Mode View / Petugas)";
+            }
+            else
+            {
+                // Jika Admin, berikan akses penuh untuk mengelola data irigasi
+                btnInsert.Enabled = true;
                 btnUpdate.Enabled = true;
-                btnDelete.Enabled = true; // DELETE
-            
+                btnDelete.Enabled = true;
+
+                txtNamaIrigasi.Enabled = true;
+                txtJenisIrigasi.Enabled = true;
+                txtLokasi.Enabled = true;
+
+                this.Text = "Monitoring Kualitas Air - Data Irigasi (Mode CRUD / Admin)";
+            }
         }
 
         private void bindingNavigator1_RefreshItems(object sender, EventArgs e)
         {
-
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
-        //hitung total
+        // Menghitung total data menggunakan SP Output Parameter
         private void HitungTotal()
         {
             try
@@ -319,18 +413,14 @@ namespace MonitoringKualitasAir
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        SqlParameter outputParam =
-                            new SqlParameter("@Total", SqlDbType.Int);
-
+                        SqlParameter outputParam = new SqlParameter("@Total", SqlDbType.Int);
                         outputParam.Direction = ParameterDirection.Output;
-
                         cmd.Parameters.Add(outputParam);
 
                         conn.Open();
                         cmd.ExecuteNonQuery();
 
-                        lblTotal.Text =
-                            "Total Irigasi : " + outputParam.Value.ToString();
+                        lblTotal.Text = "Total Irigasi : " + outputParam.Value.ToString();
                     }
                 }
             }
