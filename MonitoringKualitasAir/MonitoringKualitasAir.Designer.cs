@@ -46,11 +46,11 @@
             this.phairDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kondisiairDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.keteranganDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vwMonitoringKualitasAirBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dBMonitoringKualitasAirDataSet4 = new DBMonitoringKualitasAirDataSet4();
             this.monitoringKualitasAirBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dBMonitoringKualitasAirDataSet3 = new DBMonitoringKualitasAirDataSet3();
             this.txtIDMonitoring = new System.Windows.Forms.TextBox();
-            this.vwMonitoringKualitasAirBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dBMonitoringKualitasAirDataSet4 = new DBMonitoringKualitasAirDataSet4();
             this.txtPH = new System.Windows.Forms.TextBox();
             this.btnKoneksi = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -85,13 +85,19 @@
             this.btnInjectionMonitoring = new System.Windows.Forms.Button();
             this.lblTotal = new System.Windows.Forms.Label();
             this.vw_MonitoringKualitasAirTableAdapter = new DBMonitoringKualitasAirDataSet4TableAdapters.vw_MonitoringKualitasAirTableAdapter();
+            this.btnUpload = new System.Windows.Forms.Button();
+            this.pbFoto = new System.Windows.Forms.PictureBox();
+            this.btnRekap = new System.Windows.Forms.Button();
+            this.btnImportExcel = new System.Windows.Forms.Button();
+            this.btnImportDatabase = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.monitoringKualitasAirBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwMonitoringKualitasAirBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monitoringKualitasAirBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -246,6 +252,16 @@
             this.keteranganDataGridViewTextBoxColumn.Name = "keteranganDataGridViewTextBoxColumn";
             this.keteranganDataGridViewTextBoxColumn.Width = 125;
             // 
+            // vwMonitoringKualitasAirBindingSource
+            // 
+            this.vwMonitoringKualitasAirBindingSource.DataMember = "vw_MonitoringKualitasAir";
+            this.vwMonitoringKualitasAirBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet4;
+            // 
+            // dBMonitoringKualitasAirDataSet4
+            // 
+            this.dBMonitoringKualitasAirDataSet4.DataSetName = "DBMonitoringKualitasAirDataSet4";
+            this.dBMonitoringKualitasAirDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // monitoringKualitasAirBindingSource
             // 
             this.monitoringKualitasAirBindingSource.DataMember = "MonitoringKualitasAir";
@@ -265,16 +281,6 @@
             this.txtIDMonitoring.Size = new System.Drawing.Size(100, 22);
             this.txtIDMonitoring.TabIndex = 8;
             this.txtIDMonitoring.TextChanged += new System.EventHandler(this.txtIDMonitoring_TextChanged);
-            // 
-            // vwMonitoringKualitasAirBindingSource
-            // 
-            this.vwMonitoringKualitasAirBindingSource.DataMember = "vw_MonitoringKualitasAir";
-            this.vwMonitoringKualitasAirBindingSource.DataSource = this.dBMonitoringKualitasAirDataSet4;
-            // 
-            // dBMonitoringKualitasAirDataSet4
-            // 
-            this.dBMonitoringKualitasAirDataSet4.DataSetName = "DBMonitoringKualitasAirDataSet4";
-            this.dBMonitoringKualitasAirDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // txtPH
             // 
@@ -585,7 +591,7 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(634, 106);
+            this.lblTotal.Location = new System.Drawing.Point(594, 129);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(135, 16);
             this.lblTotal.TabIndex = 34;
@@ -595,11 +601,66 @@
             // 
             this.vw_MonitoringKualitasAirTableAdapter.ClearBeforeFill = true;
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(830, 224);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(100, 28);
+            this.btnUpload.TabIndex = 35;
+            this.btnUpload.Text = "Upload ";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
+            // pbFoto
+            // 
+            this.pbFoto.Location = new System.Drawing.Point(830, 74);
+            this.pbFoto.Name = "pbFoto";
+            this.pbFoto.Size = new System.Drawing.Size(100, 134);
+            this.pbFoto.TabIndex = 36;
+            this.pbFoto.TabStop = false;
+            // 
+            // btnRekap
+            // 
+            this.btnRekap.Location = new System.Drawing.Point(1133, 182);
+            this.btnRekap.Name = "btnRekap";
+            this.btnRekap.Size = new System.Drawing.Size(140, 35);
+            this.btnRekap.TabIndex = 37;
+            this.btnRekap.Text = "Rekap Data";
+            this.btnRekap.UseVisualStyleBackColor = true;
+            this.btnRekap.Click += new System.EventHandler(this.btnRekap_Click);
+            // 
+            // btnImportExcel
+            // 
+            this.btnImportExcel.Location = new System.Drawing.Point(1133, 114);
+            this.btnImportExcel.Name = "btnImportExcel";
+            this.btnImportExcel.Size = new System.Drawing.Size(140, 46);
+            this.btnImportExcel.TabIndex = 38;
+            this.btnImportExcel.Text = "Import From Excel";
+            this.btnImportExcel.UseVisualStyleBackColor = true;
+            this.btnImportExcel.Click += new System.EventHandler(this.btnImportExcel_Click);
+            // 
+            // btnImportDatabase
+            // 
+            this.btnImportDatabase.Location = new System.Drawing.Point(1133, 62);
+            this.btnImportDatabase.Name = "btnImportDatabase";
+            this.btnImportDatabase.Size = new System.Drawing.Size(140, 46);
+            this.btnImportDatabase.TabIndex = 39;
+            this.btnImportDatabase.Text = "Import To Database";
+            this.btnImportDatabase.UseVisualStyleBackColor = true;
+            this.btnImportDatabase.Click += new System.EventHandler(this.btnImportDatabase_Click);
+            // 
             // MonitoringKualitasAir
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1318, 520);
+            this.Controls.Add(this.btnImportDatabase);
+            this.Controls.Add(this.btnImportExcel);
+            this.Controls.Add(this.btnRekap);
+            this.Controls.Add(this.pbFoto);
+            this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.btnInjectionMonitoring);
             this.Controls.Add(this.btnResetData);
@@ -634,13 +695,14 @@
             this.Text = "MonitoringKualitasAir";
             this.Load += new System.EventHandler(this.MonitoringKualitasAir_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.monitoringKualitasAirBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vwMonitoringKualitasAirBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.monitoringKualitasAirBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBMonitoringKualitasAirDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbFoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -703,5 +765,10 @@
         private DBMonitoringKualitasAirDataSet4 dBMonitoringKualitasAirDataSet4;
         private System.Windows.Forms.BindingSource vwMonitoringKualitasAirBindingSource;
         private DBMonitoringKualitasAirDataSet4TableAdapters.vw_MonitoringKualitasAirTableAdapter vw_MonitoringKualitasAirTableAdapter;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.PictureBox pbFoto;
+        private System.Windows.Forms.Button btnRekap;
+        private System.Windows.Forms.Button btnImportExcel;
+        private System.Windows.Forms.Button btnImportDatabase;
     }
 }
